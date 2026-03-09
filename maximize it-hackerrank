@@ -1,0 +1,26 @@
+from itertools import product
+
+def solve():
+    # Read K (number of lists) and M (modulo value)
+    k, m = map(int, input().split())
+    
+    lists = []
+    for _ in range(k):
+        # The first integer is the length of the list, so we ignore it
+        # and store the squares of the elements
+        row = list(map(int, input().split()))[1:]
+        # Optimization: only store unique squares modulo M
+        lists.append([x**2 for x in row])
+    
+    max_val = 0
+    
+    # product(*lists) creates the Cartesian product of all lists
+    for combination in product(*lists):
+        current_sum = sum(combination) % m
+        if current_sum > max_val:
+            max_val = current_sum
+            
+    print(max_val)
+
+if __name__ == "__main__":
+    solve()
