@@ -1,0 +1,16 @@
+from itertools import groupby
+
+# Read the input string
+s = input()
+
+# groupby(s) returns an iterator of (key, group)
+# key is the character, group is an iterator over the consecutive occurrences
+result = []
+for key, group in groupby(s):
+    # Count occurrences by converting the group iterator to a list
+    count = len(list(group))
+    # Format as (count, key) where key is an integer
+    result.append(f"({count}, {key})")
+
+# Print the result joined by a single space
+print(" ".join(result))
